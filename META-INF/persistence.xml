@@ -1,0 +1,12 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+    <persistence-unit name="default">
+        <class>com.mysql.cj.jdbc.Driver</class>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://finalproj-mysql-ueb-bd1.mysql.database.azure.com:3306/tuclinicadb"/>
+            <property name="javax.persistence.jdbc.user" value="gblanco"/>
+            <property name="javax.persistence.jdbc.password" value="123456aB!"/>
+        </properties>
+    </persistence-unit>
+</persistence>

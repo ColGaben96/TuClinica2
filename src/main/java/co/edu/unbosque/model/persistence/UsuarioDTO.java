@@ -8,7 +8,7 @@ public class UsuarioDTO {
 	private int id;
 	private int num_identificacion;
 	private String correo;
-	private String contraseña;
+	private String contrasena;
 	private boolean estado;
 	private Tipo_IdentificacionDTO tipo_identificacion;
 
@@ -20,10 +20,10 @@ public class UsuarioDTO {
 	 * @param id
 	 * @param num_identificacion
 	 * @param correo
-	 * @param contraseña
+	 * @param contrasena
 	 */
 	public UsuarioDTO(String rol, String nombres, String apellidos, Tipo_IdentificacionDTO tipo_identificacion2, int id,
-			int num_identificacion, String correo, String contraseña, boolean estado) {
+			int num_identificacion, String correo, String contrasena, boolean estado) {
 		this.rol = rol;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
@@ -31,7 +31,7 @@ public class UsuarioDTO {
 		this.id = id;
 		this.num_identificacion = num_identificacion;
 		this.correo = correo;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.estado = estado;
 	}
 
@@ -134,17 +134,17 @@ public class UsuarioDTO {
 	}
 
 	/**
-	 * @return the contraseña
+	 * @return the contraseÃ±a
 	 */
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
 	/**
-	 * @param contraseña the contraseña to set
+	 * @param contrasena the contraseÃ±a to set
 	 */
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	/**

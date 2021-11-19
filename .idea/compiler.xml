@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FinalProjJavav4" />
+        <module name="tuclinica" />
       </profile>
       <profile name="Annotation profile for Unknown" enabled="true">
         <sourceOutputDir name="../../target/generated-sources/annotations" />
@@ -18,12 +19,14 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="FinalProjJavav4" target="11" />
+      <module name="tuclinica" target="11" />
       <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="FinalProjJavav4" options="-parameters" />
+      <module name="tuclinica" options="-parameters" />
     </option>
   </component>
 </project>

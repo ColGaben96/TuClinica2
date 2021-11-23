@@ -1,4 +1,7 @@
 package co.edu.unbosque.model.dao;
 
-public interface PaisDAO {
+import co.edu.unbosque.model.persistence.PaisDTO;
+import org.springframework.data.repository.CrudRepository;
+
+public interface PaisDAO extends CrudRepository<PaisDTO, Integer> {
 }

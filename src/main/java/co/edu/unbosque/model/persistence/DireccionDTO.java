@@ -1,26 +1,24 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "direccion")
 public class DireccionDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String direccion;
 	private String barrio;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "municipio", name = "id", nullable = false, updatable = false, insertable = false)
 	private MunicipioDTO municipio;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO usuario;
-
-	/**
-	 * @param id
-	 * @param direccion
-	 * @param barrio
-	 * @param municipio
-	 * @param usuario
-	 */
-	public DireccionDTO(int id, String direccion, String barrio, MunicipioDTO municipio, UsuarioDTO usuario) {
-		this.id = id;
-		this.direccion = direccion;
-		this.barrio = barrio;
-		this.municipio = municipio;
-		this.usuario = usuario;
-	}
 
 	/**
 	 * @return the id

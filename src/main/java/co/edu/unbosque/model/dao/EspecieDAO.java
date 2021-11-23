@@ -1,4 +1,7 @@
 package co.edu.unbosque.model.dao;
 
-public interface EspecieDAO {
+import co.edu.unbosque.model.persistence.EspecieDTO;
+import org.springframework.data.repository.CrudRepository;
+
+public interface EspecieDAO extends CrudRepository<EspecieDTO, Integer> {
 }

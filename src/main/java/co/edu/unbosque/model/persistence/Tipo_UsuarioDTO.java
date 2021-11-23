@@ -1,18 +1,17 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "tipo_usuario")
 public class Tipo_UsuarioDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
-
-	/**
-	 * @param id
-	 * @param nombre
-	 */
-	public Tipo_UsuarioDTO(int id, String nombre) {
-
-		this.id = id;
-		this.nombre = nombre;
-	}
 
 	/**
 	 * @return the id

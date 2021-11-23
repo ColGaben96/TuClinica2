@@ -1,20 +1,21 @@
 package co.edu.unbosque.model.persistence;
 
-public class DepartamentoDTO {
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Data
+@Table(name = "departamento")
+public class DepartamentoDTO implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "pais", name = "id", nullable = false, updatable = false, insertable = false)
 	private PaisDTO pais;
-
-	/**
-	 * @param id
-	 * @param nombre
-	 * @param pais
-	 */
-	public DepartamentoDTO(int id, String nombre, PaisDTO pais) {
-		this.id = id;
-		this.nombre = nombre;
-		this.pais = pais;
-	}
 
 	/**
 	 * @return the id

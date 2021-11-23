@@ -1,39 +1,27 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "usuario")
 public class UsuarioDTO {
 
 	private String rol;
 	private String nombres;
 	private String apellidos;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int num_identificacion;
 	private String correo;
 	private String contrasena;
 	private boolean estado;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "tipo_identificacion", name = "id", nullable = false, updatable = false, insertable = false)
 	private Tipo_IdentificacionDTO tipo_identificacion;
-
-	/**
-	 * @param rol
-	 * @param nombres
-	 * @param apellidos
-	 * @param tipo_identificacion2
-	 * @param id
-	 * @param num_identificacion
-	 * @param correo
-	 * @param contrasena
-	 */
-	public UsuarioDTO(String rol, String nombres, String apellidos, Tipo_IdentificacionDTO tipo_identificacion2, int id,
-			int num_identificacion, String correo, String contrasena, boolean estado) {
-		this.rol = rol;
-		this.nombres = nombres;
-		this.apellidos = apellidos;
-		this.tipo_identificacion = tipo_identificacion2;
-		this.id = id;
-		this.num_identificacion = num_identificacion;
-		this.correo = correo;
-		this.contrasena = contrasena;
-		this.estado = estado;
-	}
 
 	/**
 	 * @return the rol

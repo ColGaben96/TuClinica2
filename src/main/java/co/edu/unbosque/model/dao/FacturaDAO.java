@@ -1,4 +1,7 @@
 package co.edu.unbosque.model.dao;
 
-public interface FacturaDAO {
+import co.edu.unbosque.model.persistence.FacturaDTO;
+import org.springframework.data.repository.CrudRepository;
+
+public interface FacturaDAO extends CrudRepository<FacturaDTO, Integer> {
 }

@@ -1,20 +1,20 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "municipio")
 public class MunicipioDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "departamento", name = "id", nullable = false, updatable = false, insertable = false)
 	private DepartamentoDTO departamento;
-
-	/**
-	 * @param id
-	 * @param nombre
-	 * @param departamento
-	 */
-	public MunicipioDTO(int id, String nombre, DepartamentoDTO departamento) {
-		this.id = id;
-		this.nombre = nombre;
-		this.departamento = departamento;
-	}
 
 	/**
 	 * @return the id

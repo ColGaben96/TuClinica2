@@ -1,39 +1,26 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "mascota")
 public class MascotaDTO {
 	private String raza;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private String color;
 	private String tamano;
 	private String fecha_nacimiento;
 	private String detalles;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO dueno;
 	private boolean estado;
-
-	/**
-	 * @param raza
-	 * @param id
-	 * @param nombre
-	 * @param color
-	 * @param tamano
-	 * @param fecha_nacimiento
-	 * @param detalles
-	 * @param dueno
-	 * @param estado
-	 */
-	public MascotaDTO(String raza, int id, String nombre, String color, String tamano, String fecha_nacimiento,
-			String detalles, UsuarioDTO dueno, boolean estado) {
-		this.raza = raza;
-		this.id = id;
-		this.nombre = nombre;
-		this.color = color;
-		this.tamano = tamano;
-		this.fecha_nacimiento = fecha_nacimiento;
-		this.detalles = detalles;
-		this.dueno = dueno;
-		this.estado = estado;
-	}
 
 	/**
 	 * @return the raza
@@ -99,7 +86,7 @@ public class MascotaDTO {
 	}
 
 	/**
-	 * @param tamaño the tamaño to set
+	 * @param tamaÃ±o the tamaÃ±o to set
 	 */
 	public void setTamano(String tamano) {
 		this.tamano = tamano;

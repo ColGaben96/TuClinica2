@@ -1,20 +1,20 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "raza")
 public class RazaDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "especie", name = "id", nullable = false, updatable = false, insertable = false)
 	private EspecieDTO especie;
-
-	/**
-	 * @param id
-	 * @param nombre
-	 * @param especie
-	 */
-	public RazaDTO(int id, String nombre, EspecieDTO especie) {
-		this.id = id;
-		this.nombre = nombre;
-		this.especie = especie;
-	}
 
 	/**
 	 * @return the id

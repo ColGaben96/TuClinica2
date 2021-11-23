@@ -1,30 +1,23 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "suministro")
 public class SuministroDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private String via_administracion;
 	private String fabricante;
 	private int precio;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "tipo_suministro", name = "id", nullable = false, updatable = false, insertable = false)
 	private Tipo_SuministroDTO tipo_suministro;
-
-	/**
-	 * @param id
-	 * @param nombre
-	 * @param via_administracion
-	 * @param fabrifcante
-	 * @param precio
-	 * @param tipo_suministro
-	 */
-	public SuministroDTO(int id, String nombre, String via_administracion, String fabrifcante, int precio,
-			Tipo_SuministroDTO tipo_suministro) {
-		this.id = id;
-		this.nombre = nombre;
-		this.via_administracion = via_administracion;
-		this.fabricante = fabrifcante;
-		this.precio = precio;
-		this.tipo_suministro = tipo_suministro;
-	}
 
 	/**
 	 * @return the id

@@ -1,20 +1,18 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "tipo_servicio")
 public class Tipo_ServicioDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private int tarifa;
-
-	/**
-	 * @param id
-	 * @param nombre
-	 * @param tarifa
-	 */
-	public Tipo_ServicioDTO(int id, String nombre, int tarifa) {
-		this.id = id;
-		this.nombre = nombre;
-		this.tarifa = tarifa;
-	}
 
 	/**
 	 * @return the id

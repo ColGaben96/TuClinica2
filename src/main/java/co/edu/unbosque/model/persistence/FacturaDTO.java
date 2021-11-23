@@ -1,33 +1,28 @@
 package co.edu.unbosque.model.persistence;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "factura")
 public class FacturaDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO dueno;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO veterinario;
 	private String fecha_servicio;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(table = "tipo_servicio", name = "id", nullable = false, updatable = false, insertable = false)
 	private Tipo_ServicioDTO tipo_servicio;
 	private int total_servicio;
 	private boolean estado;
-
-	/**
-	 * @param id
-	 * @param dueno
-	 * @param veterinario
-	 * @param fecha_servicio
-	 * @param tipo_servicio
-	 * @param total_servicio
-	 * @param estado
-	 */
-	public FacturaDTO(int id, UsuarioDTO dueno, UsuarioDTO veterinario, String fecha_servicio,
-			Tipo_ServicioDTO tipo_servicio, int total_servicio, boolean estado) {
-		this.id = id;
-		this.dueno = dueno;
-		this.veterinario = veterinario;
-		this.fecha_servicio = fecha_servicio;
-		this.tipo_servicio = tipo_servicio;
-		this.total_servicio = total_servicio;
-		this.estado = estado;
-	}
 
 	/**
 	 * @return the id

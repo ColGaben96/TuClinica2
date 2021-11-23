@@ -1,4 +1,7 @@
 package co.edu.unbosque.model.dao;
 
-public interface RazaDAO {
+import co.edu.unbosque.model.persistence.RazaDTO;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RazaDAO extends CrudRepository<RazaDTO, Integer> {
 }

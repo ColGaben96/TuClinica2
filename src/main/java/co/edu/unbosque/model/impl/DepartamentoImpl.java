@@ -4,10 +4,12 @@ import co.edu.unbosque.model.dao.DepartamentoDAO;
 import co.edu.unbosque.model.persistence.DepartamentoDTO;
 import co.edu.unbosque.model.service.DepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class DepartamentoImpl implements DepartamentoService {
 
     @Autowired

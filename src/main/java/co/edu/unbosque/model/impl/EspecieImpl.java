@@ -4,10 +4,12 @@ import co.edu.unbosque.model.dao.EspecieDAO;
 import co.edu.unbosque.model.persistence.EspecieDTO;
 import co.edu.unbosque.model.service.EspecieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class EspecieImpl implements EspecieService {
 
     @Autowired

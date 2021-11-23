@@ -4,10 +4,12 @@ import co.edu.unbosque.model.dao.DireccionDAO;
 import co.edu.unbosque.model.persistence.DireccionDTO;
 import co.edu.unbosque.model.service.DireccionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class DireccionImpl implements DireccionService {
 
     @Autowired

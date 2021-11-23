@@ -12,10 +12,10 @@ public class HistoriaDTO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "mascota", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private MascotaDTO mascota;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "factura", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private FacturaDTO servicio;
 	private String diagnostico;
 	public boolean estado;

@@ -3,36 +3,39 @@ package co.edu.unbosque.model.persistence;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
 @Table(name = "mascota")
 public class MascotaDTO {
-	private String raza;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	private RazaDTO raza;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private String color;
 	private String tamano;
-	private String fecha_nacimiento;
+	private Date fecha_nacimiento;
 	private String detalles;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO dueno;
 	private boolean estado;
 
 	/**
 	 * @return the raza
 	 */
-	public String getRaza() {
+	public RazaDTO getRaza() {
 		return raza;
 	}
 
 	/**
 	 * @param raza the raza to set
 	 */
-	public void setRaza(String raza) {
+	public void setRaza(RazaDTO raza) {
 		this.raza = raza;
 	}
 
@@ -95,14 +98,14 @@ public class MascotaDTO {
 	/**
 	 * @return the fecha_nacimiento
 	 */
-	public String getFecha_nacimiento() {
+	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
 	/**
 	 * @param fecha_nacimiento the fecha_nacimiento to set
 	 */
-	public void setFecha_nacimiento(String fecha_nacimiento) {
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 

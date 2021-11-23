@@ -9,31 +9,33 @@ import javax.persistence.*;
 @Table(name = "usuario")
 public class UsuarioDTO {
 
-	private String rol;
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	private Tipo_UsuarioDTO rol;
 	private String nombres;
 	private String apellidos;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int num_identificacion;
+	private String num_identificacion;
 	private String correo;
 	private String contrasena;
 	private boolean estado;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "tipo_identificacion", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private Tipo_IdentificacionDTO tipo_identificacion;
 
 	/**
 	 * @return the rol
 	 */
-	public String getRol() {
+	public Tipo_UsuarioDTO getRol() {
 		return rol;
 	}
 
 	/**
 	 * @param rol the rol to set
 	 */
-	public void setRol(String rol) {
+	public void setRol(Tipo_UsuarioDTO rol) {
 		this.rol = rol;
 	}
 
@@ -96,14 +98,14 @@ public class UsuarioDTO {
 	/**
 	 * @return the num_identificacion
 	 */
-	public int getNum_identificacion() {
+	public String getNum_identificacion() {
 		return num_identificacion;
 	}
 
 	/**
 	 * @param num_identificacion the num_identificacion to set
 	 */
-	public void setNum_identificacion(int num_identificacion) {
+	public void setNum_identificacion(String num_identificacion) {
 		this.num_identificacion = num_identificacion;
 	}
 

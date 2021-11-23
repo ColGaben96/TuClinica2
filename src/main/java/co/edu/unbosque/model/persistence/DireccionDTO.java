@@ -14,10 +14,10 @@ public class DireccionDTO {
 	private String direccion;
 	private String barrio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "municipio", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private MunicipioDTO municipio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO usuario;
 
 	/**

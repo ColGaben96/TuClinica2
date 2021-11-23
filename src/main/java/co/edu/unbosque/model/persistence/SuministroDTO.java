@@ -16,7 +16,7 @@ public class SuministroDTO {
 	private String fabricante;
 	private int precio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "tipo_suministro", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private Tipo_SuministroDTO tipo_suministro;
 
 	/**

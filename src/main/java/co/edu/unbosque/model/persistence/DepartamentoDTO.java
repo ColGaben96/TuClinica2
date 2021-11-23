@@ -14,7 +14,7 @@ public class DepartamentoDTO implements Serializable {
 	private int id;
 	private String nombre;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "pais", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private PaisDTO pais;
 
 	/**

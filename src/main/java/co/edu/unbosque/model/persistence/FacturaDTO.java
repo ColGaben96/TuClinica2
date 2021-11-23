@@ -3,6 +3,7 @@ package co.edu.unbosque.model.persistence;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -12,14 +13,14 @@ public class FacturaDTO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO dueno;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "usuario", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO veterinario;
-	private String fecha_servicio;
+	private Date fecha_servicio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(table = "tipo_servicio", name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
 	private Tipo_ServicioDTO tipo_servicio;
 	private int total_servicio;
 	private boolean estado;
@@ -69,14 +70,14 @@ public class FacturaDTO {
 	/**
 	 * @return the fecha_servicio
 	 */
-	public String getFecha_servicio() {
+	public Date getFecha_servicio() {
 		return fecha_servicio;
 	}
 
 	/**
 	 * @param fecha_servicio the fecha_servicio to set
 	 */
-	public void setFecha_servicio(String fecha_servicio) {
+	public void setFecha_servicio(Date fecha_servicio) {
 		this.fecha_servicio = fecha_servicio;
 	}
 

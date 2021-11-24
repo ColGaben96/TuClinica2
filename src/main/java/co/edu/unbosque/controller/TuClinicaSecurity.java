@@ -25,6 +25,14 @@ public class TuClinicaSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/application/login")
+                .permitAll()
+                .antMatchers("/application/forgot")
+                .permitAll()
+                .antMatchers("/application/signup")
+                .permitAll()
+                .antMatchers("/admin/login")
+                .permitAll()
                 .antMatchers("/application/**")
                 .hasAnyRole("Cliente", "Veterinario")
                 .antMatchers("/admin/**")
@@ -32,6 +40,7 @@ public class TuClinicaSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/application/login")
+                .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/error/403");
     }

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @Slf4j
@@ -74,5 +75,20 @@ public class TuClinicaController {
     @GetMapping("/admin/dashboard")
     public String adminDashboard() {
         return "admin/dashboard";
+    }
+
+    @PostMapping("/addUserByForm")
+    public String signupUser() {
+        return "redirect:/application/dashboard";
+    }
+
+    @PostMapping("/authenticateApplication")
+    public String login() {
+        return "redirect:/application/dashboard";
+    }
+
+    @PostMapping("/authenticateAdmin")
+    public String loginAdmin() {
+        return "redirect:/admin/dashboard";
     }
 }

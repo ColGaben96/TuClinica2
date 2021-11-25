@@ -3,7 +3,6 @@ package co.edu.unbosque.model.persistence;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -12,9 +11,7 @@ public class Tipo_ServicioDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@NotNull
 	private String nombre;
-	@NotNull
 	private int tarifa;
 
 	/**

@@ -36,7 +36,7 @@ public class TuClinicaWebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/login");
-        registry.addViewController("/errores/403").setViewName("/error/403");
+        registry.addViewController("/application/login");
+        registry.addViewController("/admin/login");
     }
 }

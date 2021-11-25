@@ -14,17 +14,18 @@
     <body>
         <div class="container-fluid">
             <div class="container">
-                <div class="alert alert-danger" role="alertdialog" id="badCredentials" hidden>Las credenciales son incorrectas. Intenta nuevamente</div>
-                <div class="alert alert-danger" role="alertdialog" id="badEndpoint" hidden>Tenemos error con nuestro servidor. Intenta mas tarde</div>
+                <br>
+                <div class="alert alert-danger" role="alertdialog" id="badCredentials" th:if="${param.badCredentials}">Las credenciales son incorrectas. Intenta nuevamente</div>
+                <div class="alert alert-danger" role="alertdialog" id="badEndpoint" th:if="${param.badEndpoint}">Tenemos error con nuestro servidor. Intenta mas tarde</div>
                 <div class="card">
                     <h5 class="card-title" style="text-align: center;">Iniciar Sesion</h5>
                     <div class="container">
-                        <form class="needs-validation" th:action="@{/authenticateApplication}" th:method="post" th:object="${usuarios}">
+                        <form class="needs-validation" th:action="@{/login}" th:method="post" th:object="${usuario}">
                             <div class="mb-3">
-                                <label for="username">Correo</label>
+                                <label for="correo">Correo</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    <input type="email" class="form-control" th:name="correo" id="username" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" required>
+                                    <input type="email" class="form-control" th:name="correo" id="correo" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" th:value="${correo}" required autofocus>
                                     <div class="invalid-feedback">
                                         Ingresa un correo válido
                                     </div>
@@ -32,10 +33,10 @@
                                 <div id="username-info" class="form-text">Es la cuenta de correo asociada a la clínica. Si no tienes una, <a href="/application/signup">regístrate ahora</a>.</div>
                             </div>
                             <div class="mb-3">
-                                <label for="password">Contraseña</label>
+                                <label for="contrasena">Contraseña</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" th:name="contrasena" id="password" aria-describedby="password-info" required>
+                                    <input type="password" class="form-control" th:name="contrasena" id="contrasena" aria-describedby="password-info" th:value="${contrasena}" required>
                                     <div class="invalid-feedback">
                                         Ingresa una contraseña válida
                                     </div>

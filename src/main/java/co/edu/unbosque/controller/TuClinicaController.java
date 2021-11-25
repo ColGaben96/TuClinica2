@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.model.persistence.UsuarioDTO;
 import co.edu.unbosque.model.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +50,8 @@ public class TuClinicaController {
     }
 
     @GetMapping("/application/login")
-    public String userlogin(Model model) {
-        var usuarios = this.usuario.listAll();
-        model.addAttribute("usuarios", usuarios);
+    public String userlogin(UsuarioDTO usuario, Model model) {
+        model.addAttribute("Usuario", usuario);
         return "application/login";
     }
 

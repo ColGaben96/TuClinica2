@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+//hola
 @Entity
 @Data
 @Table(name = "departamento")

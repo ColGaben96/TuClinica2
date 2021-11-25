@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -23,15 +24,19 @@ public class TuClinicaSecurity extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("testCli").password(passwordEncoder().encode("user1Pass")).roles("Cliente")
+                .and()
+                .withUser("testVet").password(passwordEncoder().encode("user2Pass")).roles("Veterinario")
+                .and()
+                .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("Admin");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/application/login")
-                .permitAll()
-                .antMatchers("/application/forgot")
-                .permitAll()
-                .antMatchers("/application/signup")
-                .permitAll()
-                .antMatchers("/admin/login")
+                .antMatchers("/application/forgot", "/application/signup")
                 .permitAll()
                 .antMatchers("/application/**")
                 .hasAnyRole("Cliente", "Veterinario")
@@ -39,9 +44,10 @@ public class TuClinicaSecurity extends WebSecurityConfigurerAdapter {
                 .hasAnyRole("Admin")
                 .and()
                 .formLogin()
-                .loginPage("/application/login")
+                .loginPage("/application/login").defaultSuccessUrl("/application/dashboard")
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/error/403");
+                .logout().logoutSuccessUrl("/application/login");
+        http.csrf().disable();
     }
 }

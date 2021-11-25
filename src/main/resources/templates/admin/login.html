@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta lang="es" charset="UTF-8">
         <title>Tu Clinica.com | Iniciar Sesion</title>
@@ -46,12 +46,12 @@
                     <h5 class="card-title" style="text-align: center;">Iniciar Sesion</h5>
                     <p class="form-text" style="text-align: center;"> Portal de Administración</p>
                     <div class="container">
-                        <form class="needs-validation">
+                        <form class="needs-validation" th:action="@{/authenticateAdmin}" method="post" th:object="${usuarios}">
                             <div class="mb-3">
                                 <label for="username">Correo</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    <input type="text" class="form-control" id="username" aria-describedby="username-info" placeholder="Ej. gblancol@tuclinica.com" required>
+                                    <input type="text" class="form-control" th:name="username" id="username" aria-describedby="username-info" placeholder="Ej. gblancol@tuclinica.com" required>
                                     <div class="invalid-feedback">
                                         Ingresa un correo válido
                                     </div>
@@ -62,7 +62,7 @@
                                 <label for="password">Contraseña</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" id="password" aria-describedby="password-info" required>
+                                    <input type="password" class="form-control" th:name="password" id="password" aria-describedby="password-info" required>
                                     <div class="invalid-feedback">
                                         Ingresa una contraseña válida
                                     </div>

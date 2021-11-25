@@ -4,6 +4,7 @@ import co.edu.unbosque.model.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -48,37 +49,39 @@ public class TuClinicaController {
     }
 
     @GetMapping("/application/login")
-    public String userlogin() {
+    public String userlogin(Model model) {
+        var usuarios = this.usuario.listAll();
+        model.addAttribute("usuarios", usuarios);
         return "application/login";
     }
 
     @GetMapping("/application/signup")
-    public String userSignup() {
+    public String userSignup(Model model) {
         return "application/signup";
     }
 
     @GetMapping("/application/forgot")
-    public String userForgotPwd() {
+    public String userForgotPwd(Model model) {
         return "application/forgot";
     }
 
     @GetMapping("/application/dashboard")
-    public String userDashboard() {
+    public String userDashboard(Model model) {
         return "application/dashboard";
     }
 
     @GetMapping("/admin/login")
-    public String adminLogin() {
+    public String adminLogin(Model model) {
         return "admin/login";
     }
 
     @GetMapping("/admin/dashboard")
-    public String adminDashboard() {
+    public String adminDashboard(Model model) {
         return "admin/dashboard";
     }
 
     @PostMapping("/addUserByForm")
-    public String signupUser() {
+    public String signupUser(Model model) {
         return "redirect:/application/dashboard";
     }
 
@@ -86,7 +89,6 @@ public class TuClinicaController {
     public String login() {
         return "redirect:/application/dashboard";
     }
-
     @PostMapping("/authenticateAdmin")
     public String loginAdmin() {
         return "redirect:/admin/dashboard";

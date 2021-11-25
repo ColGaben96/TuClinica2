@@ -49,6 +49,7 @@ public class Usuario_Impl implements UsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var usuario = this.usuario.findByCorreo(username);
         if (usuario == null) {

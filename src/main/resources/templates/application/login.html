@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta lang="es" charset="UTF-8">
         <title>Tu Clinica.com | Iniciar Sesion</title>
@@ -8,35 +10,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/302a1eb3e6.js" crossorigin="anonymous"></script>
     </head>
-    <header>
-        <!-- Aqui va un menu-->
-        <h1 style="text-align: center;">Tu Clinica.com</h1>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid-left">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fas fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Quienes Somos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="container-fluid-right">
-                <div class="nav-item dropdown">
-                    <a class="nav-link active dropdown-toggle" aria-current="page" href="#" id="navbarDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Mi Cuenta
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item disabled">Iniciar Sesion</a></li>
-                        <li><a class="dropdown-item" href="/application/signup">Registrarse</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <header th:replace="layout/header :: body"></header>
     <body>
         <div class="container-fluid">
             <div class="container">
@@ -50,7 +24,7 @@
                                 <label for="username">Correo</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    <input type="email" class="form-control" th:field="*{usuario.}" th:name="correo" id="username" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" required>
+                                    <input type="email" class="form-control" th:name="correo" id="username" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" required>
                                     <div class="invalid-feedback">
                                         Ingresa un correo válido
                                     </div>
@@ -61,7 +35,7 @@
                                 <label for="password">Contraseña</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" th:field="*{contrasena}" th:name="contrasena" id="password" aria-describedby="password-info" required>
+                                    <input type="password" class="form-control" th:name="contrasena" id="password" aria-describedby="password-info" required>
                                     <div class="invalid-feedback">
                                         Ingresa una contraseña válida
                                     </div>
@@ -75,7 +49,5 @@
             </div>
         </div>
     </body>
-    <footer>
-        <p style="text-align: center;">© 2021 - Universidad El Bosque - Estefanía Galindo - Gabriel Blanco</p>
-    </footer>
+    <footer th:replace="layout/footer"></footer>
 </html>

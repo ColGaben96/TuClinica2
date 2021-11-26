@@ -1,5 +1,6 @@
 package co.edu.unbosque.controller;
 
+import co.edu.unbosque.model.persistence.DireccionDTO;
 import co.edu.unbosque.model.persistence.UsuarioDTO;
 import co.edu.unbosque.model.service.*;
 import lombok.extern.slf4j.Slf4j;
@@ -51,12 +52,15 @@ public class TuClinicaController {
 
     @GetMapping("/application/login")
     public String userlogin(UsuarioDTO usuario, Model model) {
-        model.addAttribute("Usuario", usuario);
+        model.addAttribute("usuario", usuario);
         return "application/login";
     }
 
     @GetMapping("/application/signup")
-    public String userSignup(Model model) {
+    public String userSignup(Model model, UsuarioDTO usuario, DireccionDTO direccion) {
+        var tipo_identificacion = this.tipo_identificacion.listAll();
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("identificaciones", tipo_identificacion);
         return "application/signup";
     }
 
@@ -81,7 +85,10 @@ public class TuClinicaController {
     }
 
     @PostMapping("/addUserByForm")
-    public String signupUser(Model model) {
+    public String signupUser(UsuarioDTO usuario) {
+        var ids = this.tipo_usuario.listAll();
+        usuario.setRol(ids.get(1));
+        this.usuario.save(usuario);
         return "redirect:/application/dashboard";
     }
 

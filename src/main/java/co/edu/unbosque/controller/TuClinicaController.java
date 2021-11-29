@@ -51,12 +51,6 @@ public class TuClinicaController {
         return "index";
     }
 
-    @GetMapping("/application/login")
-    public String userlogin(UsuarioDTO usuario, Model model) {
-        model.addAttribute("usuario", usuario);
-        return "application/login";
-    }
-
     @GetMapping("/application/signup")
     public String userSignup(Model model, UsuarioDTO usuario, DireccionDTO direccion, MascotaDTO mascota) {
         var tipo_identificacion = this.tipo_identificacion.listAll();

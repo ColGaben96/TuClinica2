@@ -34,31 +34,25 @@ public class TuClinicaSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/application/forgot", "/application/signup").permitAll()
+                .antMatchers("/", "/application/forgot", "/application/signup", "/addUserByForm", "/admin/login").permitAll()
                 .antMatchers("/admin/**").hasAnyRole("Admin")
                 .antMatchers("/application/**").hasAnyRole("Cliente", "Veterinario")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/application/login").permitAll()
-                .loginProcessingUrl("/login")
-                .failureUrl("/application/login?badCredentials=true")
+                .loginProcessingUrl("/login").permitAll()
+                .failureUrl("/application/login?badCredentials=true").permitAll()
                 .defaultSuccessUrl("/application/dashboard")
                 .and()
                 .logout().permitAll();
-        /*
-        http.antMatcher("/admin*")
-                .authorizeRequests().anyRequest().hasAnyRole("Admin")
-                .and()
-                .formLogin()
-                .loginPage("/admin/login")
-                .failureUrl("/admin/login?badcredentials=true")
-                .defaultSuccessUrl("/admin/dashboard")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .and()
-                .csrf().disable();
+    }
 
-         */
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication()
+                .withUser("user@tuclinica.com").password("password").roles("Cliente")
+                .and()
+                .withUser("admin@tuclinica.com").password("password").roles("Admin");
     }
 }

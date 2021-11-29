@@ -58,7 +58,9 @@ public class Usuario_Impl implements UsuarioService {
         var roles = new ArrayList<GrantedAuthority>();
         var rolesActuales = new Tipo_UsuarioImpl().listAll();
         for (Tipo_UsuarioDTO rol : rolesActuales) {
-            roles.add(new SimpleGrantedAuthority(rol.getNombre()));
+            if (usuario.getRol() == rol) {
+                roles.add(new SimpleGrantedAuthority(rol.getNombre()));
+            }
         }
         return new User(usuario.getCorreo(), usuario.getContrasena(), roles);
     }

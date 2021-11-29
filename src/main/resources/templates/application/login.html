@@ -20,12 +20,12 @@
                 <div class="card">
                     <h5 class="card-title" style="text-align: center;">Iniciar Sesion</h5>
                     <div class="container">
-                        <form th:action="@{/login}" th:method="post" th:object="${usuario}">
+                        <form th:action="@{/application/login}" method="GET">
                             <div class="mb-3">
-                                <label for="correo">Correo</label>
+                                <label for="username">Correo</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    <input type="email" class="form-control" th:name="correo" id="correo" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" th:value="${correo}" required autofocus>
+                                    <input type="email" class="form-control" name="username" id="username" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" required autofocus>
                                     <div class="invalid-feedback">
                                         Ingresa un correo válido
                                     </div>
@@ -33,17 +33,18 @@
                                 <div id="username-info" class="form-text">Es la cuenta de correo asociada a la clínica. Si no tienes una, <a href="/application/signup">regístrate ahora</a>.</div>
                             </div>
                             <div class="mb-3">
-                                <label for="contrasena">Contraseña</label>
+                                <label for="password">Contraseña</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" th:name="contrasena" id="contrasena" aria-describedby="password-info" th:value="${contrasena}" required>
+                                    <input type="password" class="form-control" name="password" id="password" aria-describedby="password-info" required>
                                     <div class="invalid-feedback">
                                         Ingresa una contraseña válida
                                     </div>
                                 </div>
                                 <div id="password-info" class="form-text"><a href="/application/forgot">¿Olvidaste tu contraseña?</a></div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            <br>
+                            <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
                         </form>
                     </div>
                 </div>

@@ -10,12 +10,13 @@ import javax.persistence.*;
 public class Historia_SuministroDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_historia_suministro")
 	private int id;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idHistoria", nullable = false, updatable = false, insertable = false)
 	private HistoriaDTO historia;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idSuministro", nullable = false, updatable = false, insertable = false)
 	private SuministroDTO suministro;
 
 	/**

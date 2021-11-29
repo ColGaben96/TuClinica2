@@ -44,8 +44,8 @@ public class Usuario_Impl implements UsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(UsuarioDTO usuario) {
-        this.usuario.findById(usuario.getId());
+    public UsuarioDTO find(UsuarioDTO usuario) {
+        return this.usuario.findById(usuario.getId()).orElse(null);
     }
 
     @Override

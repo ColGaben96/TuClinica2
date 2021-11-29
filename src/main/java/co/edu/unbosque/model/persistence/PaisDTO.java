@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class PaisDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pais")
 	private int id;
 	private String nombre;
 

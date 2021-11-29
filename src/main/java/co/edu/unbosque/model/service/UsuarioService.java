@@ -9,5 +9,5 @@ public interface UsuarioService extends UserDetailsService {
     List<UsuarioDTO> listAll();
     void save(UsuarioDTO usuario);
     void delete(UsuarioDTO usuario);
-    void find(UsuarioDTO usuario);
+    UsuarioDTO find(UsuarioDTO usuario);
 }

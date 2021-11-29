@@ -5,6 +5,7 @@ import co.edu.unbosque.model.persistence.PaisDTO;
 import co.edu.unbosque.model.service.PaisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,22 +17,26 @@ public class PaisImpl implements PaisService {
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<PaisDTO> listAll() {
         return (List<PaisDTO>) this.pais.findAll();
     }
 
     @Override
+    @Transactional
     public void save(PaisDTO pais) {
         this.pais.save(pais);
     }
 
     @Override
+    @Transactional
     public void delete(PaisDTO pais) {
         this.pais.delete(pais);
     }
 
     @Override
-    public void find(PaisDTO pais) {
-        this.pais.findById(pais.getId());
+    @Transactional(readOnly = true)
+    public PaisDTO find(PaisDTO pais) {
+        return this.pais.findById(pais.getId()).orElse(null);
     }
 }

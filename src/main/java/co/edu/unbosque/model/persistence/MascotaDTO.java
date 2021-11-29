@@ -10,10 +10,11 @@ import java.util.Date;
 @Table(name = "mascota")
 public class MascotaDTO {
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "id_raza", nullable = false, updatable = false, insertable = false)
 	private RazaDTO raza;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_mascota")
 	private int id;
 	private String nombre;
 	private String color;
@@ -21,7 +22,7 @@ public class MascotaDTO {
 	private Date fecha_nacimiento;
 	private String detalles;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idUsuario", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO dueno;
 	private boolean estado;
 

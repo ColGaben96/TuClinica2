@@ -8,5 +8,5 @@ public interface SuministroService {
     List<SuministroDTO> listAll();
     void save(SuministroDTO suministro);
     void delete(SuministroDTO suministro);
-    void find(SuministroDTO suministro);
+    SuministroDTO find(SuministroDTO suministro);
 }

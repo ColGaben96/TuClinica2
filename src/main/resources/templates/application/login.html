@@ -20,7 +20,7 @@
                 <div class="card">
                     <h5 class="card-title" style="text-align: center;">Iniciar Sesion</h5>
                     <div class="container">
-                        <form class="needs-validation" th:action="@{/login}" th:method="post" th:object="${usuario}">
+                        <form th:action="@{/login}" th:method="post" th:object="${usuario}">
                             <div class="mb-3">
                                 <label for="correo">Correo</label>
                                 <div class="input-group has-validation">

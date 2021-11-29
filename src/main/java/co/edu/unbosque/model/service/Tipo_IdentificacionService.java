@@ -8,5 +8,5 @@ public interface Tipo_IdentificacionService {
     List<Tipo_IdentificacionDTO> listAll();
     void save(Tipo_IdentificacionDTO tipoIdentificacion);
     void delete(Tipo_IdentificacionDTO tipoIdentificacion);
-    void find(Tipo_IdentificacionDTO tipoIdentificacion);
+    Tipo_IdentificacionDTO find(Tipo_IdentificacionDTO tipoIdentificacion);
 }

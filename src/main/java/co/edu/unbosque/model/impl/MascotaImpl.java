@@ -35,7 +35,7 @@ public class MascotaImpl implements MascotaService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(MascotaDTO mascota) {
-        this.mascota.findById(mascota.getId());
+    public MascotaDTO find(MascotaDTO mascota) {
+        return this.mascota.findById(mascota.getId()).orElse(null);
     }
 }

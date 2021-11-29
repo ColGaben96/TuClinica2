@@ -35,7 +35,7 @@ public class Historia_SuministroImpl implements Historia_SuministroService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(Historia_SuministroDTO historia_suministro) {
-        this.historia_suministro.findById(historia_suministro.getId());
+    public Historia_SuministroDTO find(Historia_SuministroDTO historia_suministro) {
+        return this.historia_suministro.findById(historia_suministro.getId()).orElse(null);
     }
 }

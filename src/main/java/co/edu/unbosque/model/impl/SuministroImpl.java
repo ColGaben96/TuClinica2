@@ -35,7 +35,7 @@ public class SuministroImpl implements SuministroService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(SuministroDTO suministro) {
-        this.suministro.findById(suministro.getId());
+    public SuministroDTO find(SuministroDTO suministro) {
+        return this.suministro.findById(suministro.getId()).orElse(null);
     }
 }

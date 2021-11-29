@@ -35,7 +35,7 @@ public class DireccionImpl implements DireccionService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(DireccionDTO direccion) {
-        this.direccion.findById(direccion.getId());
+    public DireccionDTO find(DireccionDTO direccion) {
+        return this.direccion.findById(direccion.getId()).orElse(null);
     }
 }

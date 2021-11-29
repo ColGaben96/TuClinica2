@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Tipo_IdentificacionDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_tipo_identificacion")
 	private int id;
 	private String nombre;
 

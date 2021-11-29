@@ -35,7 +35,7 @@ public class RazaImpl implements RazaService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(RazaDTO raza) {
-        this.raza.findById(raza.getId());
+    public RazaDTO find(RazaDTO raza) {
+        return this.raza.findById(raza.getId()).orElse(null);
     }
 }

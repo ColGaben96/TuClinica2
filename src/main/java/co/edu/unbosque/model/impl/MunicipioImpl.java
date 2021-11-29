@@ -1,12 +1,15 @@
 package co.edu.unbosque.model.impl;
 
+import co.edu.unbosque.model.dao.DepartamentoDAO;
 import co.edu.unbosque.model.dao.MunicipioDAO;
+import co.edu.unbosque.model.persistence.DepartamentoDTO;
 import co.edu.unbosque.model.persistence.MunicipioDTO;
 import co.edu.unbosque.model.service.MunicipioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,7 +38,8 @@ public class MunicipioImpl implements MunicipioService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(MunicipioDTO municipio) {
-        this.municipio.findById(municipio.getId());
+    public MunicipioDTO find(MunicipioDTO municipio) {
+        return this.municipio.findById(municipio.getId()).orElse(null);
     }
+
 }

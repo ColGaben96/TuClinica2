@@ -35,7 +35,7 @@ public class HistoriaImpl implements HistoriaService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(HistoriaDTO historia) {
-        this.historia.findById(historia.getId());
+    public HistoriaDTO find(HistoriaDTO historia) {
+        return this.historia.findById(historia.getId()).orElse(null);
     }
 }

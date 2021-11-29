@@ -8,5 +8,5 @@ public interface DireccionService {
     List<DireccionDTO> listAll();
     void save(DireccionDTO direccion);
     void delete(DireccionDTO direccion);
-    void find(DireccionDTO direccion);
+    DireccionDTO find(DireccionDTO direccion);
 }

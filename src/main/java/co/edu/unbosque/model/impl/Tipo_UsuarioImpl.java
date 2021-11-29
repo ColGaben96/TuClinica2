@@ -35,7 +35,7 @@ public class Tipo_UsuarioImpl implements Tipo_UsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(Tipo_UsuarioDTO tipoUsuario) {
-        this.tipoUsuario.findById(tipoUsuario.getId());
+    public Tipo_UsuarioDTO find(Tipo_UsuarioDTO tipoUsuario) {
+        return this.tipoUsuario.findById(tipoUsuario.getId()).orElse(null);
     }
 }

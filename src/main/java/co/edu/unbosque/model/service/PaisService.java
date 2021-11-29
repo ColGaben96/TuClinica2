@@ -8,5 +8,5 @@ public interface PaisService {
     List<PaisDTO> listAll();
     void save(PaisDTO pais);
     void delete(PaisDTO pais);
-    void find(PaisDTO pais);
+    PaisDTO find(PaisDTO pais);
 }

@@ -9,20 +9,21 @@ import javax.persistence.*;
 @Table(name = "usuario")
 public class UsuarioDTO {
 
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tipo_usuario")
 	private Tipo_UsuarioDTO rol;
 	private String nombres;
 	private String apellidos;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario")
 	private int id;
 	private String num_identificacion;
 	private String correo;
 	private String contrasena;
 	private boolean estado;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tipo_identificacion")
 	private Tipo_IdentificacionDTO tipo_identificacion;
 
 	/**

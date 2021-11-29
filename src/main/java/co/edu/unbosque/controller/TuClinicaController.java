@@ -1,7 +1,6 @@
 package co.edu.unbosque.controller;
 
-import co.edu.unbosque.model.persistence.DireccionDTO;
-import co.edu.unbosque.model.persistence.UsuarioDTO;
+import co.edu.unbosque.model.persistence.*;
 import co.edu.unbosque.model.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
 
 @Controller
 @Slf4j
@@ -57,10 +58,22 @@ public class TuClinicaController {
     }
 
     @GetMapping("/application/signup")
-    public String userSignup(Model model, UsuarioDTO usuario, DireccionDTO direccion) {
+    public String userSignup(Model model, UsuarioDTO usuario, DireccionDTO direccion, MascotaDTO mascota) {
         var tipo_identificacion = this.tipo_identificacion.listAll();
-        model.addAttribute("usuario", usuario);
         model.addAttribute("identificaciones", tipo_identificacion);
+        var pais = this.pais.listAll();
+        model.addAttribute("paises", pais);
+        var departamentos = this.departamento.listAll();
+        model.addAttribute("departamentos", departamentos);
+        var municipios = this.municipio.listAll();
+        model.addAttribute("municipios", municipios);
+        model.addAttribute("direccion", direccion);
+        model.addAttribute("usuario", usuario);
+        var especies = this.especie.listAll();
+        model.addAttribute("especies", especies);
+        var razas = this.raza.listAll();
+        model.addAttribute("razas", razas);
+        model.addAttribute("mascota", mascota);
         return "application/signup";
     }
 
@@ -85,10 +98,15 @@ public class TuClinicaController {
     }
 
     @PostMapping("/addUserByForm")
-    public String signupUser(UsuarioDTO usuario) {
+    public String signupUser(UsuarioDTO usuario, DireccionDTO direccion, MascotaDTO mascota) {
         var ids = this.tipo_usuario.listAll();
         usuario.setRol(ids.get(1));
+        usuario.setEstado(true);
+        direccion.setUsuario(usuario);
+        mascota.setDueno(usuario);
         this.usuario.save(usuario);
+        this.direccion.save(direccion);
+        this.mascota.save(mascota);
         return "redirect:/application/dashboard";
     }
 

@@ -8,5 +8,5 @@ public interface RazaService {
     List<RazaDTO> listAll();
     void save(RazaDTO raza);
     void delete(RazaDTO raza);
-    void find(RazaDTO raza);
+    RazaDTO find(RazaDTO raza);
 }

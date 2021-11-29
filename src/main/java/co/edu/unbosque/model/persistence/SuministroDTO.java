@@ -10,12 +10,13 @@ import javax.persistence.*;
 public class SuministroDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_suministro")
 	private int id;
 	private String nombre;
 	private String fabricante;
 	private int precio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idTipoSuministro", nullable = false, updatable = false, insertable = false)
 	private Tipo_SuministroDTO tipo_suministro;
 
 	/**

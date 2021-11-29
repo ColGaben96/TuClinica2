@@ -14,9 +14,10 @@
 </head>
 <header th:replace="layout/header :: body"></header>
 <body>
-<form class="needs-validation" th:action="@{/addUserByForm}" method="post" th:object="${usuario}">
+<form th:action="@{/addUserByForm}"  th:method="post" th:object="${usuario}">
   <div class="fluid-container">
     <div class="container">
+      <br>
       <div class="card">
         <h5 class="card-title" style="text-align: center">Tus Datos</h5>
         <div class="container">
@@ -58,30 +59,30 @@
 				  </div>
 			  </div>
 			<div class="row" th:object="${direccion}">
-			  <div class="col">
+			  <div class="col" th:object="${paises}">
 				  <label for="country">Pais</label>
 				  <div class="input-group">
 					  <span class="input-group-text"><i class="fas fa-globe-americas"></i></span>
-                      <select class="input-group-text" id="country">
-                          <option>Colombia</option>
+                      <select class="form-select" id="country">
+                          <option th:each="pais : ${paises}" th:value="${pais.getId()}" th:text="${pais.getNombre()}"></option>
                       </select>
 				</div>
 				</div>
-				<div class="col">
+				<div class="col" th:object="${departamentos}">
 					<label for="state">Departamento</label>
 					<div class="input-group">
-						<span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-						<select class="input-group-text" id="state">
-                            <option></option>
+						<span class="form-select"><i class="fas fa-map-marked-alt"></i></span>
+						<select class="input-group-text" id="state" th:value="${paises}">
+                            <option th:each="departamento : ${departamentos}" th:value="${departamento.getId()}" th:text="${departamento.getNombre()}"></option>
                         </select>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col" th:object="${municipios}">
 					<label for="city">Municipio</label>
 					<div class="input-group">
 						<span class="input-group-text"><i class="fas fa-city"></i></span>
-                        <select class="input-group-text" id="city">
-                            <option></option>
+                        <select class="form-select" id="city" th:value="${direccion.municipio}">
+                            <option th:each="municipio : ${municipios}" th:value="${municipio.getId()}" th:text="${municipio.getNombre()}"></option>
                         </select>
 					</div>
 				</div>
@@ -89,14 +90,23 @@
 					<label for="address">Direccion</label>
 					<div class="input-group">
 						<span class="input-group-text"><i class="fas fa-map-pin"></i></span>
-						<input class="form-control" id="address" type="text" required placeholder="Ej. Avenida Carrera 9 # 131-02">
+						<input class="form-control" id="address" type="text" required placeholder="Ej. Avenida Carrera 9 # 131-02" th:value="${direccion.direccion}">
 					</div>
 				</div>
+                <div class="col">
+                    <label for="neighboorhood">Barrio</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
+                        <input class="form-control" id="neighboorhood" type="text" required placeholder="Bella Suiza" th:value="${direccion.barrio}">
+                    </div>
+
 			  </div>
           </div>
         </div>
       </div>
-      <div class="card">
+      </div>
+      <br>
+      <div class="card" th:object="${mascota}">
         <h5 class="card-title" style="text-align: center">Tu mascota</h5>
         <div class="container">
           <div class="mb-auto">
@@ -105,29 +115,26 @@
                 <label for="pet-name">Nombre</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                  <input class="form-control" id="pet-name" type="text">
+                  <input class="form-control" id="pet-name" type="text" th:value="${mascota.nombre}">
                 </div>
               </div>
-              <div class="col">
+              <div class="col" th:object="${especies}">
                 <label for="pet-species">Especie</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                  <input class="form-control" id="pet-species" type="text">
+                  <select class="form-select" id="pet-species">
+                    <option th:each="especie : ${especies}" th:value="${especie.getId()}" th:text="${especie.nombre}"></option>
+                  </select>
                 </div>
               </div>
             <div class="row">
-              <div class="col">
+              <div class="col" th:object="${razas}">
                 <label for="pet-breed">Raza</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                  <input class="form-control" id="pet-breed" type="text">
-                </div>
-              </div>
-              <div class="col">
-                <label for="pet-sex">Sexo</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                  <input class="form-control" id="pet-sex" type="text">
+                  <select class="form-select" id="pet-breed" th:value="${mascota.raza}">
+                    <option th:each="raza : ${razas}" th:value="${raza.getId()}" th:text="${raza.getNombre()}"></option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -137,14 +144,14 @@
               <label for="pet-size">Tamaño</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                <input class="form-control" id="pet-size" type="text">
+                <input class="form-control" id="pet-size" type="text" th:value="${mascota.tamano}">
               </div>
             </div>
             <div class="col">
               <label for="pet-fur-color">Color</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                <input class="form-control" id="pet-fur-color" type="text">
+                <input class="form-control" id="pet-fur-color" type="text" th:value="${mascota.color}">
               </div>
             </div>
             <div class="row">
@@ -152,18 +159,22 @@
                 <label for="pet-birthdate">Fecha de Nacimiento</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                  <input class="form-control" id="pet-birthdate" type="text">
+                  <input class="form-control" id="pet-birthdate" type="date" th:value="${mascota.fecha_nacimiento}">
                 </div>
               </div>
               <div class="col">
                 <label for="pet-details">Detalles</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-paw"></i></span>
-                  <textarea id="pet-details" rows="5" cols="75"></textarea>
+                  <textarea id="pet-details" rows="5" cols="75" th:value="${mascota.detalles}"></textarea>
                 </div>
               </div>
         </div>
       </div>
+          </div>
+        </div>
+      </div>
+      <br>
       <div class="card">
         <h5 class="card-title" style="text-align: center">Tu usuario</h5>
         <div class="container">
@@ -173,7 +184,7 @@
                 <label for="email">Correo</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="far fa-envelope"></i></span>
-                  <input class="form-control" type="email" id="email" required>
+                  <input class="form-control" type="email" id="email" th:value="${usuario.correo}" required>
                 </div>
               </div>
               <div class="col">
@@ -188,7 +199,7 @@
                   <label for="password">Contraseña</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                    <input class="form-control" type="password" id="password" required>
+                    <input class="form-control" type="password" id="password" th:value="${usuario.contrasena}" required>
                   </div>
                 </div>
                 <div class="col">
@@ -203,13 +214,15 @@
               <div class="form-check">
                 <input class="form-check-inpu" type="checkbox" id="checkTOS" required>
                 <label for="checkTOS">Acepto los términos y condiciones y el tratamiento de mi información.</label>
+                <br>
+                <input id="submit" type="submit" class="btn btn-primary" value="Registrarse">
               </div>
-              <input type="submit" class="btn btn-primary" value="Registrarse">
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </form>
 </body>

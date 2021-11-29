@@ -11,16 +11,17 @@ import java.util.Date;
 public class FacturaDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_factura")
 	private int id;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idUsuario", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO dueno;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idUsuario", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO veterinario;
 	private Date fecha_servicio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idTipoServicio", nullable = false, updatable = false, insertable = false)
 	private Tipo_ServicioDTO tipo_servicio;
 	private int total_servicio;
 	private boolean estado;

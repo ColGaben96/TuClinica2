@@ -35,7 +35,7 @@ public class Tipo_SuministroImpl implements Tipo_SuministroService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(Tipo_SuministroDTO tipoSuministro) {
-
+    public Tipo_SuministroDTO find(Tipo_SuministroDTO tipoSuministro) {
+        return this.tipoSuministro.findById(tipoSuministro.getId()).orElse(null);
     }
 }

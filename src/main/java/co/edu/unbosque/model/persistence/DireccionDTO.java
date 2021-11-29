@@ -10,14 +10,15 @@ import javax.persistence.*;
 public class DireccionDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_direccion")
 	private int id;
 	private String direccion;
 	private String barrio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idMunicipio", nullable = false, updatable = false, insertable = false)
 	private MunicipioDTO municipio;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idUsuario", nullable = false, updatable = false, insertable = false)
 	private UsuarioDTO usuario;
 
 	/**

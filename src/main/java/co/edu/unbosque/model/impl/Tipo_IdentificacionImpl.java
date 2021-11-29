@@ -35,7 +35,7 @@ public class Tipo_IdentificacionImpl implements Tipo_IdentificacionService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(Tipo_IdentificacionDTO tipoIdentificacion) {
-        this.tipoIdentificacion.findById(tipoIdentificacion.getId());
+    public Tipo_IdentificacionDTO find(Tipo_IdentificacionDTO tipoIdentificacion) {
+        return this.tipoIdentificacion.findById(tipoIdentificacion.getId()).orElse(null);
     }
 }

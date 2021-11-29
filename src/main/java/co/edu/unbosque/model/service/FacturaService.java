@@ -8,5 +8,5 @@ public interface FacturaService {
     List<FacturaDTO> listAll();
     void save(FacturaDTO factura);
     void delete(FacturaDTO factura);
-    void find(FacturaDTO factura);
+    FacturaDTO find(FacturaDTO factura);
 }

@@ -8,5 +8,5 @@ public interface MascotaService {
     List<MascotaDTO> listAll();
     void save(MascotaDTO mascota);
     void delete(MascotaDTO mascota);
-    void find(MascotaDTO mascota);
+    MascotaDTO find(MascotaDTO mascota);
 }

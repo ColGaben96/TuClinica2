@@ -8,5 +8,5 @@ public interface EspecieService {
     List<EspecieDTO> listAll();
     void save(EspecieDTO especie);
     void delete(EspecieDTO especie);
-    void find(EspecieDTO especie);
+    EspecieDTO find(EspecieDTO especie);
 }

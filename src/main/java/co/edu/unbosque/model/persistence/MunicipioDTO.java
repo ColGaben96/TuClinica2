@@ -10,10 +10,11 @@ import javax.persistence.*;
 public class MunicipioDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_municipio")
 	private int id;
 	private String nombre;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "idDepartamento", nullable = false, updatable = false, insertable = false)
 	private DepartamentoDTO departamento;
 
 	/**

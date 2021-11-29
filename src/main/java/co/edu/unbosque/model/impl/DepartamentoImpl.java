@@ -2,11 +2,14 @@ package co.edu.unbosque.model.impl;
 
 import co.edu.unbosque.model.dao.DepartamentoDAO;
 import co.edu.unbosque.model.persistence.DepartamentoDTO;
+import co.edu.unbosque.model.persistence.PaisDTO;
 import co.edu.unbosque.model.service.DepartamentoService;
+import co.edu.unbosque.model.service.PaisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,7 +38,7 @@ public class DepartamentoImpl implements DepartamentoService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(DepartamentoDTO departamento) {
-        this.departamento.findById(departamento.getId());
+    public DepartamentoDTO find(DepartamentoDTO departamento) {
+        return this.departamento.findById(departamento.getId()).orElse(null);
     }
 }

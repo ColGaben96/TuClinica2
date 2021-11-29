@@ -35,7 +35,7 @@ public class EspecieImpl implements EspecieService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(EspecieDTO especie) {
-        this.especie.findById(especie.getId());
+    public EspecieDTO find(EspecieDTO especie) {
+        return this.especie.findById(especie.getId()).orElse(null);
     }
 }

@@ -33,7 +33,7 @@ public class FacturaImpl implements FacturaService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(FacturaDTO factura) {
-        this.factura.findById(factura.getId());
+    public FacturaDTO find(FacturaDTO factura) {
+        return this.factura.findById(factura.getId()).orElse(null);
     }
 }

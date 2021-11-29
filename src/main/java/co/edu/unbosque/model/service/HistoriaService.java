@@ -8,5 +8,5 @@ public interface HistoriaService {
     List<HistoriaDTO> listAll();
     void save(HistoriaDTO historia);
     void delete(HistoriaDTO historia);
-    void find(HistoriaDTO historia);
+    HistoriaDTO find(HistoriaDTO historia);
 }

@@ -35,7 +35,7 @@ public class Tipo_ServicioImpl implements Tipo_ServicioService {
 
     @Override
     @Transactional(readOnly = true)
-    public void find(Tipo_ServicioDTO tipoServicio) {
-        this.tipoSerivico.findById(tipoServicio.getId());
+    public Tipo_ServicioDTO find(Tipo_ServicioDTO tipoServicio) {
+        return this.tipoSerivico.findById(tipoServicio.getId()).orElse(null);
     }
 }

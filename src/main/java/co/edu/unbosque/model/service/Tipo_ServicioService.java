@@ -8,5 +8,5 @@ public interface Tipo_ServicioService {
     List<Tipo_ServicioDTO> listAll();
     void save(Tipo_ServicioDTO tipoServicio);
     void delete(Tipo_ServicioDTO tipoServicio);
-    void find(Tipo_ServicioDTO tipoServicio);
+    Tipo_ServicioDTO find(Tipo_ServicioDTO tipoServicio);
 }

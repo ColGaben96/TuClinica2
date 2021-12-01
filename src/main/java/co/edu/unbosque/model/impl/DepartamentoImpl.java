@@ -41,4 +41,30 @@ public class DepartamentoImpl implements DepartamentoService {
     public DepartamentoDTO find(DepartamentoDTO departamento) {
         return this.departamento.findById(departamento.getId()).orElse(null);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public DepartamentoDTO findByCountry(DepartamentoDTO departamentoDTO) {
+        var paises = new PaisImpl().listAll();
+        for (PaisDTO p : paises) {
+            if (p.getId() == departamentoDTO.getId_pais().getId()) {
+                return find(departamentoDTO);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<DepartamentoDTO> listByCountry(PaisDTO pais) {
+        var deptos = new ArrayList<DepartamentoDTO>();
+        var deps = listAll();
+        for (DepartamentoDTO d : deps) {
+            if (d.getId_pais() == pais) {
+                deptos.add(d);
+            }
+        }
+
+        return deptos;
+    }
 }

@@ -44,7 +44,7 @@
                           <label for="id-type">Tipo de Identificación</label>
                           <div class="input-group">
                               <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                              <select class="form-select" id="id-type" th:value="${usuario.tipo_identificacion}">
+                              <select class="form-select" id="id-type" th:value="${usuario.tipo_identificacion}" th:field="${usuario.tipo_identificacion}">
                                   <option th:each="identificacion: ${identificaciones}" th:value="${identificacion.getId()}" th:text="${identificacion.getNombre()}"></option>
                               </select>
                           </div>
@@ -81,7 +81,7 @@
 					<label for="city">Municipio</label>
 					<div class="input-group">
 						<span class="input-group-text"><i class="fas fa-city"></i></span>
-                        <select class="form-select" id="city" th:value="${direccion.municipio}">
+                        <select class="form-select" id="city" th:value="${direccion.municipio}" th:field="${direccion.municipio}">
                             <option th:each="municipio : ${municipios}" th:value="${municipio.getId()}" th:text="${municipio.getNombre()}"></option>
                         </select>
 					</div>

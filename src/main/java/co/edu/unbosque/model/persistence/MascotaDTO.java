@@ -1,6 +1,7 @@
 package co.edu.unbosque.model.persistence;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class MascotaDTO {
 	private String nombre;
 	private String color;
 	private String tamano;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha_nacimiento;
 	private String detalles;
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)

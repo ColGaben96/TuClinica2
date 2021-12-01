@@ -126,13 +126,16 @@ public class TuClinicaController {
     @PostMapping("/authenticateApplication")
     public String login(UsuarioDTO usuario) {
         var roles = this.tipo_usuario.listAll();
-        usuario = this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena());
-        if (this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena()) != null) {
-            for (Tipo_UsuarioDTO rol : roles) {
-                if ((rol.getNombre().equals("Cliente") || rol.getNombre().equals("Veterinario")) && usuario.getRol() == rol) {
-                    return "redirect:/application/dashboard?userID="+usuario.getId();
+        try {
+            usuario = this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena());
+            if (this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena()) != null) {
+                for (Tipo_UsuarioDTO rol : roles) {
+                    if ((rol.getNombre().equals("Cliente") || rol.getNombre().equals("Veterinario")) && usuario.getRol() == rol) {
+                        return "redirect:/application/dashboard?userID=" + usuario.getId();
+                    }
                 }
             }
+        } catch (NullPointerException e) {
             return "redirect:/application/login?badCredentials=true";
         }
         return "redirect:/application/login?badEndpoint=true";
@@ -140,13 +143,16 @@ public class TuClinicaController {
     @PostMapping("/authenticateAdmin")
     public String loginAdmin(UsuarioDTO usuario) {
         var roles = this.tipo_usuario.listAll();
-        usuario = this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena());
-        if (this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena()) != null) {
-            for (Tipo_UsuarioDTO rol : roles) {
-                if (rol.getNombre().equals("Admin") && usuario.getRol() == rol) {
-                    return "redirect:/admin/dashboard?userID="+usuario.getId();
+        try {
+            usuario = this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena());
+            if (this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena()) != null) {
+                for (Tipo_UsuarioDTO rol : roles) {
+                    if (rol.getNombre().equals("Admin") && usuario.getRol() == rol) {
+                        return "redirect:/admin/dashboard?userID="+usuario.getId();
+                    }
                 }
             }
+        } catch (NullPointerException e) {
             return "redirect:/admin/login?badCredentials=true";
         }
         return "redirect:/admin/login?badEndpoint=true";

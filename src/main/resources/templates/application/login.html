@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta lang="es" charset="UTF-8">
         <title>Tu Clinica.com | Iniciar Sesion</title>
@@ -20,12 +19,12 @@
                 <div class="card">
                     <h5 class="card-title" style="text-align: center;">Iniciar Sesion</h5>
                     <div class="container">
-                        <form th:action="@{/application/login}" method="GET">
+                        <form th:action="@{/authenticateApplication}" th:method="POST" th:object="${usuario}">
                             <div class="mb-3">
                                 <label for="username">Correo</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    <input type="email" class="form-control" name="username" id="username" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" required autofocus>
+                                    <input type="email" class="form-control" name="username" id="username" aria-describedby="username-info" placeholder="Ej. wgalindo@tuclinica.com" th:value="${usuario.correo}" th:field="*{correo}" required autofocus>
                                     <div class="invalid-feedback">
                                         Ingresa un correo válido
                                     </div>
@@ -36,7 +35,7 @@
                                 <label for="password">Contraseña</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" name="password" id="password" aria-describedby="password-info" required>
+                                    <input type="password" class="form-control" name="password" id="password" aria-describedby="password-info" th:value="${usuario.contrasena}" th:field="*{contrasena}" required>
                                     <div class="invalid-feedback">
                                         Ingresa una contraseña válida
                                     </div>

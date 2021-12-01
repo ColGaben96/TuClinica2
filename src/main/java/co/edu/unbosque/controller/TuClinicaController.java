@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -71,24 +73,41 @@ public class TuClinicaController {
         return "application/signup";
     }
 
+    @GetMapping("/application/login")
+    public String userLogin(Model model, UsuarioDTO usuario) {
+        model.addAttribute("usuario", usuario);
+        return "application/login";
+    }
+
     @GetMapping("/application/forgot")
     public String userForgotPwd(Model model) {
         return "application/forgot";
     }
 
-    @GetMapping("/application/dashboard")
-    public String userDashboard(Model model) {
-        return "application/dashboard";
+    @GetMapping(value = "/application/dashboard", params = "userID")
+    public String userDashboard(Model model, @RequestParam String userID) {
+        var usuario = this.usuario.find(Integer.parseInt(userID));
+        if (usuario != null) {
+            model.addAttribute("usuario", usuario);
+            return "application/dashboard";
+        }
+        return "error/403";
     }
 
     @GetMapping("/admin/login")
-    public String adminLogin(Model model) {
+    public String adminLogin(Model model, UsuarioDTO usuario) {
+        model.addAttribute("usuario", usuario);
         return "admin/login";
     }
 
-    @GetMapping("/admin/dashboard")
-    public String adminDashboard(Model model) {
-        return "admin/dashboard";
+    @GetMapping(value = "/admin/dashboard", params = "userID")
+    public String adminDashboard(Model model, @RequestParam String userID) {
+        var usuario = this.usuario.find(Integer.parseInt(userID));
+        if (usuario != null) {
+            model.addAttribute("usuario", usuario);
+            return "admin/dashboard";
+        }
+        return "error/403";
     }
 
     @PostMapping("/addUserByForm")
@@ -101,15 +120,40 @@ public class TuClinicaController {
         this.usuario.save(usuario);
         this.direccion.save(direccion);
         this.mascota.save(mascota);
-        return "redirect:/application/dashboard";
+        return "redirect:/application/dashboard?userID="+usuario.getId();
     }
 
     @PostMapping("/authenticateApplication")
-    public String login() {
-        return "redirect:/application/dashboard";
+    public String login(UsuarioDTO usuario) {
+        var roles = this.tipo_usuario.listAll();
+        usuario = this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena());
+        if (this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena()) != null) {
+            for (Tipo_UsuarioDTO rol : roles) {
+                if ((rol.getNombre().equals("Cliente") || rol.getNombre().equals("Veterinario")) && usuario.getRol() == rol) {
+                    return "redirect:/application/dashboard?userID="+usuario.getId();
+                }
+            }
+            return "redirect:/application/login?badCredentials=true";
+        }
+        return "redirect:/application/login?badEndpoint=true";
     }
     @PostMapping("/authenticateAdmin")
-    public String loginAdmin() {
-        return "redirect:/admin/dashboard";
+    public String loginAdmin(UsuarioDTO usuario) {
+        var roles = this.tipo_usuario.listAll();
+        usuario = this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena());
+        if (this.usuario.findByEmail(usuario.getCorreo(), usuario.getContrasena()) != null) {
+            for (Tipo_UsuarioDTO rol : roles) {
+                if (rol.getNombre().equals("Admin") && usuario.getRol() == rol) {
+                    return "redirect:/admin/dashboard?userID="+usuario.getId();
+                }
+            }
+            return "redirect:/admin/login?badCredentials=true";
+        }
+        return "redirect:/admin/login?badEndpoint=true";
+    }
+
+    @GetMapping("/signout")
+    public String logout() {
+        return "redirect:/";
     }
 }
